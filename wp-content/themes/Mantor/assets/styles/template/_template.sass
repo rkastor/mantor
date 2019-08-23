@@ -1,0 +1,173 @@
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+html,
+body
+    height: auto
+
+
+body
+    font-size: 20px
+    line-height: 1.2em
+    font-weight: 400
+    font-family: $default-font
+    color: $c-black
+    background: $c-light
+    overflow-x: hidden
+    width: 100%
+    max-width: 100%
+
+    +selection
+        color: $c-main
+
+    
+    +sm
+        font-size: 12px
+    +mob-hor
+        font-size: 12px
+    +xs
+        font-size: 10px
+
+.header,
+.main,
+.footer
+    filter: blur(0)
+    transition: filter .5s, transform .1s
+
+.wrapper
+    display: flex
+    flex-direction: column
+    min-height: 100%
+
+.content
+    flex: 1 0 auto
+    z-index: $z-element
+    overflow-x: hidden
+
+.footer
+    flex: 0 0 auto
+    z-index: $z-footer
+
+
+a, input, textarea, button
+	outline: none
+	text-decoration: none
+
+a.contact-link
+    white-space: nowrap
+    // line-height: 25px
+    display: flex
+    align-items: center
+
+    &[href]
+        &::before
+            content: ''
+            display: inline-block
+            margin-right: 15px
+            size: 25px
+            background: $c-light
+
+    &[href^="mailto:"]
+        &::before
+            -webkit-mask: url('../svg/mail.svg')
+            -webkit-mask-position: center
+            -webkit-mask-repeat: no-repeat
+            -webkit-mask-size: contain
+    &[href^="skype:"]
+        &::before
+            -webkit-mask: url('../svg/skype.svg')
+            -webkit-mask-position: center
+            -webkit-mask-repeat: no-repeat
+            -webkit-mask-size: contain
+    &[href^="viber:"]
+        &::before
+            -webkit-mask: url('../svg/viber.svg')
+            -webkit-mask-position: center
+            -webkit-mask-repeat: no-repeat
+            -webkit-mask-size: contain
+    &[href*="whatsapp"]
+        &::before
+            -webkit-mask: url('../svg/whatsapp.svg')
+            -webkit-mask-position: center
+            -webkit-mask-repeat: no-repeat
+            -webkit-mask-size: contain
+
+
+li
+    list-style: none
+
+
+img
+    max-width: 100%
+    object-fit: contain
+
+
+.section
+    position: relative
+
+
+    &--full-height
+        min-height: 100vh
+
+    &__title
+        @extend .h2
+        text-align: center
+
+.scroll-next
+    position: absolute
+    bottom: 20px
+    cursor: pointer
+
+    +sm
+        display: none
+    +mob-hor
+        display: none
+
+    .icon
+        display: inline-block
+        margin-top: 5px
+        animation-name: bouncing;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        will-change: transform
+
+        +sm
+            width: 23px
+            height: auto
+            text-align: center
+            display: block
+            margin-left: auto
+            margin-right: auto
+        +mob-hor
+            width: 23px
+            height: auto
+            text-align: center
+            display: block
+            margin-left: auto
+            margin-right: auto
+
+    span
+        font-size: 12px 
+        font-weight: 300
+
+        +sm
+            font-size: 12px
+        +mob-hor
+            font-size: 12px
+
+
+.blur
+    filter: blur(50px)
+
+.opened-menu
+    filter: blur(29px)
+    transform: scale(1.1) translateY(3%)
+    transition: filter .9s, transform .9s
+
+.body-fixed
+    position: fixed
+    overflow: hidden
+    top: 0
+    left: 0

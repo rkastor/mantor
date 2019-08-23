@@ -1,0 +1,192 @@
+.mb-10
+	margin-bottom: 10px
+
+.mb-15
+	margin-bottom: 15px
+
+.mb-20
+	margin-bottom: 20px
+
+.mb-25
+	margin-bottom: 25px
+
+.mb-30
+	margin-bottom: 30px
+
+.mb-40
+	margin-bottom: 40px
+
+.mb-50
+	margin-bottom: 50px
+
+.mb-60
+	margin-bottom: 60px
+
+.mt-10
+	margin-top: 10px
+
+.mt-15
+	margin-top: 15px
+
+.mt-20
+	margin-top: 20px
+
+.mt-30
+	margin-top: 30px
+
+.mt-40
+	margin-top: 40px
+
+.mt-50
+	margin-top: 50px
+
+.mt-60
+	margin-top: 60px
+
+
+
+.circle
+	border-radius: 50%
+
+.square
+	&::after
+		content: ""
+		display: block
+		padding-bottom: 100%
+
+.rectangle 
+	width: 100%
+	// +rectangle($w,$h)
+
+.block
+	display: block !important
+
+.w-100
+	width: 100%
+
+[class*="max-"]
+	width: 100%
+
+.max-1100
+	max-width: 1100px
+
+.max-1040
+	max-width: 1040px
+
+.max-600
+	max-width: 600px
+
+.max-700
+	max-width: 700px
+
+	+r(700)
+		padding-left: 15px
+		padding-right: 15px
+
+.max-560
+	max-width: 560px
+
+.max-300
+	max-width: 300px
+
+.max-250
+	max-width: 255px
+
+button, input
+	border: none
+
+.block-center
+	margin-left: auto
+	margin-right: auto
+
+.text-center
+	text-align: center
+
+.text-left
+	text-align: left
+
+.text-right
+	text-align: right
+
+.text-uppercase
+	text-transform: uppercase
+
+.form-group
+	position: relative
+	margin-bottom: 20px
+	// &:not(:last-child)
+
+.rel
+	position: relative
+
+.list
+	margin-top: 40px
+
+	&__item
+		list-style-type: none
+		margin-bottom: 30px
+		padding-left: 20px
+		position: relative
+		overflow: hidden
+
+		&::before
+			position: absolute
+			left: 0
+			top: 4px
+			content: ''
+			display: block
+			line-height: inherit
+			size: 8px
+			background-color: currentColor
+			border-radius: 50%
+
+			+lg
+				top: 8px
+
+			+sm
+				top: 4px
+			+mob-hor
+				top: 4px
+
+	&--separator
+		margin-top: 0
+		> li
+			list-style-type: none
+			padding-left: 0
+			+sm
+				font-weight: 300
+				margin-bottom: 0
+			+mob-hor
+				font-weight: 300
+				margin-bottom: 0
+			&::before
+				display: none
+
+			&:not(:last-child)
+				margin-bottom: 20px
+				+sm
+					margin-bottom: 5px
+				+mob-hor
+					margin-bottom: 5px
+				&::after
+					content: '• • •'
+					display: block
+					margin-left: auto
+					margin-right: auto
+					margin-top: 20px
+					font-size: 40px
+    				letter-spacing: -0.08em
+					+sm
+						font-size: 20px
+						margin-top: 5px
+					+mob-hor
+						font-size: 20px
+						margin-top: 5px
+
+
+
+.col-6
+	flex: 0 0 50%
+	
+	+sm
+		flex: 1 100%

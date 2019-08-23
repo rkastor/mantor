@@ -1,0 +1,71 @@
+.banner
+    min-height: 100vh
+    background: url('../images/big_image.jpg') no-repeat center
+    background-size: cover
+    color: $c-light
+    +xs
+        min-height: 70vh
+        margin-top: 65px
+    +mob-hor
+        margin-top: 65px
+        min-height: calc(100vh - 65px)
+
+    &::before
+       content: ''
+       display: block
+       position: absolute
+       left: 0
+       top: 0
+       height: 100%
+       width: 100%
+       background: transparent linear-gradient(180deg, transparent 70%, #000000 100%) 0% 0% no-repeat padding-box;
+
+       +sm
+        background: transparent linear-gradient(180deg, transparent 50%, #000000 100%) 0% 0% no-repeat padding-box;
+
+
+
+    .container
+        z-index: 1
+        @extend .container--max
+        
+        +rmin(1200)
+            padding-left: 8.3%
+        
+        +r(1199)
+            text-align: center
+
+        span
+            font-size: 25px
+            +sm
+                font-size: 18px
+            +xs
+                font-size: 12px
+                max-width: 200px
+                display: block
+                margin-left: auto
+                margin-right: auto
+
+        .excend
+            font-size: inherit
+            +xs
+                max-width: 100%
+                font-size: 10px
+
+
+        *
+            margin: 20px 0
+            +r(1199)
+                margin: 15px 0
+
+        .h2
+            +xs
+                font-size: 18px
+
+        .btn
+            +r(1199)
+                margin-left: auto
+                margin-right: auto
+
+            +sm
+                margin-top: 25px

@@ -1,0 +1,31 @@
+.home
+
+    .section
+        min-height: 250px 
+        padding-top: 100px
+        padding-bottom: 110px
+        &:nth-child(odd)
+            background-color: #eee
+            color: $c-light
+        +r(980)
+            padding-top: 30px
+            padding-bottom: 30px
+
+        &__container
+
+            @extend .container
+            @extend .container--lg
+
+        &__title
+            font-weight: black 
+
+
+
+
+    @import "./home-sections/banner"
+    @import "./home-sections/about"
+    @import "./home-sections/suggestion"
+    @import "./home-sections/conditions"
+    @import "./home-sections/testimonials"
+    @import "./home-sections/faq"
+    @import "./home-sections/contact"

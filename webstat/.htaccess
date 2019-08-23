@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "/www/mantor.rkastor.com/webstat"
+AuthUserFile /var/www/rkastor/data/etc/108134794.passwd
+DirectoryIndex index.html
+<Limit GET POST>
+	require valid-user
+</Limit>
