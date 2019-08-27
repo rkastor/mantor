@@ -1,0 +1,135 @@
+.testimonials
+    padding-top: 70px
+    padding-bottom: 70px
+
+    background: url("../images/testimonials-img.jpg") no-repeat center
+    background-size: cover
+
+    +sm
+        padding-bottom: 50px
+    +mob-hor
+        padding-bottom: 50px
+
+
+    &__slider
+        padding-top: 35px
+        padding-bottom: 40px
+        overflow: visible;
+        max-width: 1300px
+
+        // +sm
+        //     padding-bottom: 50px
+        // +mob-hor
+        //     padding-bottom: 50px
+
+        .swiper-wrapper
+            justify-content: flex-start
+
+        .swiper-pagination
+            bottom: 0px
+            line-height: 12px
+
+        .swiper-button-next,
+        .swiper-button-prev
+            z-index: 11
+            +sm
+                bottom: 0
+                top: auto
+                transform: translateY(20%)
+            +mob-hor
+                bottom: 0
+                top: auto
+                transform: translateY(20%)
+
+        .swiper-button-next
+            +sm
+                right: 15%
+
+            +mob-hor
+                right: 15%
+
+
+        .swiper-button-prev
+            +sm
+                left: 15%
+
+            +mob-hor
+                left: 15%
+
+    .swiper-slide-active
+        &, 
+        & + .swiper-slide
+            .testimonial-item
+                transform: scale(1)
+                opacity: 1
+                transition: transform .9s, opacity .9s
+
+        & + .swiper-slide
+            .testimonial-item
+                +sm
+                    transform: scale(.5)
+                    opacity: 0
+
+                +mob-hor
+                    transform: scale(.5)
+                    opacity: 0
+
+    .testimonial-item
+        background-color: $c-light
+        padding: 30px 25px 50px 45px
+        color: $c-black
+        font-size: 12px
+        line-height: 1.6em
+        border-radius: $border-radius
+        transform: scale(.5)
+        opacity: 0
+        transition: transform .3s, opacity .3s
+        +sm
+            transform: scale(.8)
+            padding: 20px 17px 30px
+            font-size: 15px
+            line-height: 1.2em
+            text-align: center
+
+        +mob-hor
+            transform: scale(.8)
+            padding: 20px 17px 30px
+            font-size: 15px
+            line-height: 1.2em
+            text-align: center
+
+        &__header
+            width: 100%
+            margin-bottom: 20px
+            display: flex
+            align-items: center
+            justify-content: flex-start
+            +sm
+                justify-content: center
+            +mob-hor
+                justify-content: center
+
+            img
+                margin-right: 15px
+                border-radius: 50%
+                overflow: hidden
+                max-width: 50px
+                +sm
+                    size: 30px
+                +mob-hor
+                    size: 30px
+
+        &__name
+            @extend .title
+            font-size: 18px
+            line-height: 1em
+            margin-bottom: 0
+
+        &__content
+            *
+                +sm
+                    font-size: 15px
+                    line-height: 1.2em
+                +mob-hor
+                    font-size: 15px
+                    line-height: 1.2em

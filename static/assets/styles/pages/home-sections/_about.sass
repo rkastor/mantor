@@ -1,0 +1,51 @@
+.about
+    +r(980)
+        padding-top: 20px
+        padding-bottom: 20px
+
+
+    .section__title
+        flex: 1 100%
+        left: 0
+        +rmin(982)
+            position: absolute
+            padding-left: 52%
+            text-align: left
+            margin-top: 20px
+
+        +r(980)
+            position: relative
+            margin-bottom: 15px
+
+
+    .flex
+        +r(980)
+            flex-wrap: wrap
+        > * 
+            flex: 0 0 45%
+            +r(980)
+                flex: 1 100%
+
+
+    img
+        +sm
+            max-width: 50%
+            margin-left: auto
+            margin-right: auto
+            display: block
+        +mob-hor
+            max-width: 200px
+            margin-left: auto
+            margin-right: auto
+            display: block
+
+
+    .text
+        padding-top: 120px
+        +mob-hor
+            padding-top: 30px
+        +sm
+            padding-top: 30px
+            text-align: center 
+            p
+                line-height: 1.5em

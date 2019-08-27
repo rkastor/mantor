@@ -1,0 +1,59 @@
+h1, .h1,
+h2, .h2,
+h3, .h3
+    font-weight: 700
+    line-height: 1.208em
+
+h1, .h1
+    font-size: 60px
+
+    +lg-range
+        font-size: 54px
+    +sm
+        font-size: 30px
+    +mob-hor
+        font-size: 30px
+
+h2, .h2
+    font-size: 46px
+    +lg-range
+        font-size: 36px
+    +sm
+        font-size: 30px
+    +mob-hor
+        font-size: 30px
+
+p, a, span, input, button
+    font-family: $default-font
+    font-weight: 400
+    font-size: inherit
+    // color: $c-light
+    +sm
+        font-size: 12px
+    +mob-hor
+        font-size: 12px
+    +xs
+        font-size: 10px 
+
+b, strong, .bold
+    font-weight: 500
+    font-family: $default-font
+
+label
+    font-size: inherit
+    display: block
+    margin-bottom: 20px
+
+.section-head
+    font-size: 18px;
+    line-height: 1.2em
+    text-transform: uppercase
+
+.sub-title
+    font-size: 16px;
+    line-height: 1.2em
+
+        
+.title
+    font-weight: 700
+    margin-bottom: 10px

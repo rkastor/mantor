@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+    {% include "./_head.html" %}
+
+    <body>
+ 
+        <div class="wrapper">
+
+            <main class="main page-main content {{main_class}} blur">
+
+                {% block content %}
+
+                {% endblock %}
+
+            </main>
+
+            {% include "./_current-block.html" %}
+        
+        </div>
+
+        {% include "./_footer.html" %}
+
+        {% include "./_scripts.html" %}
+
+
+    </body>
+</html>

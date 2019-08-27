@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="50" viewBox="0 0 38 50">
+  <defs>
+    <filter id="Rectangle_22" x="0" y="0" width="38" height="50" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="mouse" transform="translate(-989 -985)">
+    <g transform="matrix(1, 0, 0, 1, 989, 985)" filter="url(#Rectangle_22)">
+      <g id="Rectangle_22-2" data-name="Rectangle 22" transform="translate(9 6)" fill="none" stroke="#fff" stroke-width="0.5">
+        <rect width="20" height="32" rx="8" stroke="none"/>
+        <rect x="0.25" y="0.25" width="19.5" height="31.5" rx="7.75" fill="none"/>
+      </g>
+    </g>
+    <path id="Path_13" data-name="Path 13" d="M1002.22,988.084l3.689,4.4,3.689-4.4" transform="translate(2.493 24.389)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="0.5"/>
+  </g>
+</svg>

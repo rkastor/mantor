@@ -1,0 +1,87 @@
+.slider,
+.swiper-container
+    
+    // +sm
+    //     padding-left: 0
+    //     padding-right: 0
+    //     width: auto
+    //     margin-top: 0
+    //     padding-top: 20px
+    //     padding-bottom: 40px
+    // +mob-hor
+    //     padding-left: 0
+    //     padding-right: 0
+    //     width: auto
+    //     margin-top: 0
+    //     padding-top: 20px
+    //     padding-bottom: 40px
+
+    // .swiper-wrapper
+    //     justify-content: space-between
+    //     align-items: stretch
+    //     +sm
+    //         margin-left: -20px
+    //         margin-right: -20px
+    //     +mob-hor
+    //         margin-left: -20px
+    //         margin-right: -20px
+    
+    .swiper-slide
+        // box-shadow: $box-shadow
+        position: relative
+        transition: .4s
+        // transform: scale(.83)
+        overflow: hidden
+        height: auto
+        cursor: grab
+
+        &:focus
+            cursor: grabbing
+
+        img
+            object-fit: cover
+
+        +lg
+
+    .swiper-pagination
+        bottom: 0px
+
+    .swiper-pagination-bullet
+        background: $inputBackg
+        border: 1px solid $c-light;
+        size: 12px
+        position: relative
+        overflow: hidden
+        transition: .2s
+
+    .swiper-pagination-bullet-active
+        background: $c-light
+ 
+
+    .swiper-button-prev,
+    .swiper-button-next
+        size: 34px
+        background: $c-light
+        transition: .2s 
+
+    .swiper-button-prev
+        -webkit-mask: url('../svg/arrow-left.svg')
+        -webkit-mask-repeat: no-repeat
+        -webkit-mask-position: center
+        -webkit-mask-size: contain
+        left: -40px
+        opacity: .25
+
+        &:hover
+            opacity: .7
+        &:active
+            opacity: 1
+
+    .swiper-button-next
+        -webkit-mask: url('../svg/arrow-right.svg')
+        -webkit-mask-repeat: no-repeat
+        -webkit-mask-position: center
+        -webkit-mask-size: contain
+        right: -40px
+
+

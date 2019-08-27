@@ -1,0 +1,117 @@
+.form
+    margin-top: 70px
+    +sm
+        margin-top: 0
+        font-size: 12px
+
+    +mob-hor
+        margin-top: 0
+        font-size: 12px
+
+    &__inputs
+        max-width: 400px
+
+        +sm
+            // max-width: 100%
+
+        +mob-hor
+            flex: 1 100%
+            margin-left: auto
+            margin-right: auto
+
+    &__files
+        flex: 1
+
+        +mob-hor
+            flex: 1 100%
+
+        > *
+            max-width: 620px
+            @extend .block-center
+            margin-right: 0
+
+            +r(1200)
+                display: flex
+                flex-direction: column
+                align-items: center
+                padding-top: 10px
+
+                .input-group
+                    width: 100%
+                    margin-top: 0
+                    // + .input-group
+                    //     margin-bottom: 30px
+
+                .form__label
+                    margin-bottom: 20px
+
+            +mob-hor
+                margin-right: auto
+                .flex
+                    justify-content: space-around
+            +sm
+                margin-right: auto
+                .flex
+                    justify-content: center
+                    > *:not(.radio-group)
+                        width: 100%
+                        max-width: 170px
+
+    &__loading
+        max-height: 80px
+        width: 100%
+        position: relative
+        margin-top: -90px
+        text-align: center
+        display: none
+        @extend .block-center
+
+
+    &__response
+        line-height: 1.8em
+        margin-top: 80px
+        margin-bottom: 20px
+        +lg
+            margin-bottom: 30px
+        +sm
+            margin-top: 0
+        +mob-hor
+            margin-top: 0
+
+        u
+            font-style: italic
+
+    .radio-group
+        &:not(:first-child)
+            margin-left: 10px
+            +sm
+                margin-left: 2px
+
+    
+    > label,
+    &__label
+        +sm
+            font-size: 20px
+            line-height: 1em
+        +mob-hor
+            font-size: 20px
+            line-height: 1em
+
+
+    .label
+
+        &__radio
+            font-size: 18px
+            line-height: 23px
+            position: relative
+            border: 1px solid $c-light
+            border-radius: $border-radius
+            min-width: 60px
+            cursor: pointer
+
+            &:hover
+                box-shadow: 0px 3px 5px rgba($c-light, .48);
+            +sm
+                font-size: 15px
+            +mob-hor
+                font-size: 15px
