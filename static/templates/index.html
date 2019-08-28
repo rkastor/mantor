@@ -1,4 +1,4 @@
-{% set page_title = "Mantor" %}
+{% set page_title = "static Mantor" %}
 {% set main_class = "home" %}
 
 {% extends "partials/layout.html" %}
@@ -6,12 +6,17 @@
 {# start of page content #}
 {% block content %}
 
-    {% include "./sections/_head-banner.html" %}
-
     {% include "./partials/_header.html" %}
 
-    <section class="section--full-height content"></section>
-    <section class="section--full-height content"></section>
+    {% include "./sections/_head-banner.html" %}
+
+    {% include "./sections/_company.html" %}
+
+    {% include "./sections/_concept.html" %}
+
+    <section class="section section--full-height"></section>
+    <section class="section section--full-height"></section>
+    <section class="section section--full-height"></section>
 
 
 {% endblock %}

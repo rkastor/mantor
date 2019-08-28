@@ -34,7 +34,7 @@ body
 .header,
 .main,
 .footer
-    filter: blur(0)
+    // filter: blur(0)
     transition: filter .5s, transform .1s
 
 .wrapper
@@ -42,10 +42,12 @@ body
     flex-direction: column
     min-height: 100%
 
-.content
+.main
     flex: 1 0 auto
     z-index: $z-element
-    overflow-x: hidden
+    // overflow-x: hidden
+    display: flex
+    flex-direction: column
 
 .footer
     flex: 0 0 auto
@@ -116,8 +118,9 @@ img
         min-height: 100vh
 
     &__title
-        @extend .h2
-        text-align: center 
+        @extend .h4
+        font-family: 'title', Helvetica,Arial, sans-serif
+        text-align: center
 
         &.white-title
             text-align: left
@@ -125,10 +128,41 @@ img
             color: $c-main
             border-top: 6px solid $c-gold
 
+        &.dots-title
+            display: inline-block
+            width: max-content
+            position: relative
+            line-height: 1.2em
+            &::before,
+            &::after
+                content: ''
+                position: absolute
+                top: 50%
+                display: inline-block
+                size: 8px
+                transform: rotate(45deg) translateY(-100%)
+                background-color: $c-main
+            &.white
+                &::before,
+                &::after
+                    background-color: $c-white
+
+
+            &::before
+                left: -40px
+            &::after
+                right: -40px
+
 .scroll-next
     position: absolute
     bottom: 20px
     cursor: pointer
+    text-align: center
+    @extend .block-center
+
+    left: 0
+    right: 0
+    width: max-content
 
     +sm
         display: none
@@ -137,11 +171,12 @@ img
 
     .icon
         display: inline-block
-        margin-top: 5px
+        margin-top: 20px
         animation-name: bouncing;
         animation-duration: 1.5s;
         animation-iteration-count: infinite;
         will-change: transform
+        size: 30px
 
         +sm
             width: 23px
@@ -159,14 +194,27 @@ img
             margin-right: auto
 
     span
-        font-size: 12px 
+        font-size: 18px 
         font-weight: 300
+        font-style: italic
+        text-transform: lowercase
+        font-family: Georgia,serif
 
         +sm
             font-size: 12px
         +mob-hor
             font-size: 12px
 
+.white
+    color: $c-white
+.gold
+    color: $c-gold
+.main-color
+    color: $c-main
+
+
+.block
+    display: block
 
 .blur
     filter: blur(50px)
@@ -177,7 +225,7 @@ img
     transition: filter .9s, transform .9s
 
 .body-fixed
-    position: fixed
+    // position: fixed
     overflow: hidden
     top: 0
     left: 0

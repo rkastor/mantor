@@ -2,7 +2,7 @@ $(function(){
     // console.log('loading..');
  
     // preloader blur effect add
-    $('.header, .main, .footer').addClass('blur');
+    $('.main, .footer').addClass('blur');
 
 
     // if img have mobile src -- add it to main src
@@ -17,21 +17,8 @@ $(function(){
     $(document).ready(function() {
         
         // preloader blur effect remove
-        $('.header, .main, .footer').removeClass('blur');
-
-
-
-        // header contacts dropdown list
-        $('.header__contacts').on('click', '.btn', function(e) {
-            e.preventDefault();
-
-            $(this).toggleClass('opened').siblings('.header__cont-list').toggleClass('opened');
-        });
-        $('.header__cont-list').on('click', '.btn', function(e) {
-            e.preventDefault();
-            $('.header__cont-list, .header__contacts .btn').removeClass('opened');
-        })
-
+        $('.main, .footer').removeClass('blur');
+        var headerHeight = $('.header').innerHeight();
 
 
         // burger menu
@@ -39,16 +26,18 @@ $(function(){
             e.preventDefault();
 
             $(this).toggleClass('toggled');
+            $('.header').toggleClass('mobile-nav');
             $('.header__mobile').toggleClass('toggled');
-            $('.main').toggleClass('opened-menu');
+            $('.section').toggleClass('opened-menu');
             $('body').toggleClass('body-fixed');
             $('.current-block').fadeToggle(150);
         });
 
         // mobile menu close when click nav item
         $('.header__mobile').on('click', '.nav a', function() {
+            $('.header').removeClass('mobile-nav');
             $('.header__mobile, .header__burger').removeClass('toggled');
-            $('.main').toggleClass('opened-menu');
+            $('.section').toggleClass('opened-menu');
             $('body').toggleClass('body-fixed');
             $('.current-block').fadeToggle(150);
         
@@ -56,10 +45,10 @@ $(function(){
             var target = $(this).attr('href');
             // console.log(target);
 
-            if( target.length && target != "#") {
+            if( target.length && target != "#" && $(target).length != 0) {
                 event.preventDefault();
                 $('html, body').stop().animate({
-                    scrollTop: $(target).offset().top - $('.header').innerHeight()
+                    scrollTop: $(target).offset().top - headerHeight
                 }, 800);
             }
         })
@@ -73,21 +62,60 @@ $(function(){
         $('.btn').each(function() {
             $(this).attr('data-text', $(this).text());
         });
-
-
+        
 
 
         // sticky header after scroll
-        if ($(window).scrollTop() >= 20) {
+        if ($(window).scrollTop() >= $('.header').next().outerHeight() + 20) {
             $('.header').addClass('sticky');
         }
-        $(window).scroll(function() {
 
-            if ($(window).scrollTop() >= 20) {
+
+        var position = $(window).scrollTop();
+
+        $(window).scroll(function() {
+            var scroll = $(window).scrollTop();
+
+            // console.log('prevScroll '+ prevScroll);
+            // console.log('scrollTop ' + $(window).scrollTop());
+
+            // parallax Effect for banner
+            if (scroll < 200 ) {
+
+                $('.section--banner').css({
+                    backgroundPositionY: 0,
+                    // transition: 'background-position .3s'
+                });
+            }
+
+            if (scroll < $('.section--banner').outerHeight()) {
+
+                $('.section--banner').css({ 
+                    backgroundPositionY: scroll * .2,
+                    // transition: 'background-position 1s'
+                });
+                $('.section--banner .banner__img, .section--banner .section__title').css({ 
+                    top: -(scroll * .6),
+                    opacity: 1 - scroll * .003
+                });
+                // console.log(scroll * .3);
+            }
+
+            if(scroll < $('.section--banner').outerHeight()) {
+                $('.current-block').fadeOut(100);
+            }
+            
+
+            if (scroll >= $('.section--banner').outerHeight() + 40) {
                 $('.header').addClass('sticky');
-            } else {
+                $('.current-block').fadeIn(400);
+                // return;
+            }
+
+            else if (scroll < position) {
                 $('.header').removeClass('sticky');
             }
+            position = scroll;
         })
 
 
@@ -102,9 +130,12 @@ $(function(){
 
             if( target.length && target != "#") {
                 event.preventDefault();
-                $('html, body').stop().animate({
-                    scrollTop: $(target).offset().top - $('.header').innerHeight()
-                }, 800);
+                if ($(target).length != 0) {
+
+                    $('html, body').stop().animate({
+                        scrollTop: $(target).offset().top - headerHeight
+                    }, 800);
+                }
             }
         });
 
@@ -119,7 +150,7 @@ $(function(){
             $(this).on('click', function(e) {
                 e.preventDefault();
                 $('html,body').animate({
-                    scrollTop: nextElementOffset - $('.header').innerHeight()
+                    scrollTop: nextElementOffset - headerHeight
                 }, 800);
             })
         });
@@ -132,6 +163,10 @@ $(function(){
             for (i=0; i < sectionItems.length; i++) {
                 sectionsNav.append('<a class="current-block__index" href="#'+ sectionItems.eq(i).attr('id') +'" data-id="section-'+ i +'"></a>');
             }
+            
+        if ($('.section--banner'.length != 0)) {
+            sectionsNav.hide(0);
+        }
 
 
 
@@ -171,7 +206,7 @@ $(function(){
                     $('.header__nav a').removeClass('current');
                     
                     sectionsNav.find('.current-block__index').eq(index).addClass('current');
-                    $('.header__nav a[href="#' + $this.attr('id') + '"]').addClass('current');
+                    $('.header__nav a[href="#' + ($this.attr('id')) ? $this.attr('id') : '' + '"]').addClass('current');
                     // console.log(index);
 
                     // console.log($this.attr('data-color'));

@@ -3,6 +3,7 @@ h2, .h2,
 h3, .h3
     font-weight: 700
     line-height: 1.208em
+    color: inherit
 
 h1, .h1
     font-size: 60px
@@ -23,6 +24,20 @@ h2, .h2
     +mob-hor
         font-size: 30px
 
+h3, .h3
+    font-size: 36px
+    +sm
+        font-size: 24px
+    +mob-hor
+        font-size: 24px
+
+h4, .h4
+    font-size: 32px
+    +sm
+        font-size: 20px
+    +mob-hor
+        font-size: 20px
+
 p, a, span, input, button
     font-family: $default-font
     font-weight: 400
@@ -36,8 +51,9 @@ p, a, span, input, button
         font-size: 10px 
 
 b, strong, .bold
-    font-weight: 500
-    font-family: $default-font
+    font-weight: 700
+    font-family: 'textbold'
+    color: $c-gold
 
 label
     font-size: inherit

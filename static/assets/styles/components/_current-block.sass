@@ -13,7 +13,7 @@
 
     &[data-color="dark"]
         > *
-            color: $c-light
+            color: $c-gold
 
     &[data-color="white"]
         > *
@@ -32,6 +32,9 @@
         background-color: transparent
         color: $c-main
         transition: all .1s
+        will-change: transform
 
         &.current
             background-color: currentColor
+        &:hover
+            transform: scale(1.2)
