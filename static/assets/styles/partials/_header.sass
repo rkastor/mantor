@@ -2,10 +2,11 @@
     position: sticky
     top: 0
     box-shadow: $header-shadow
-    // padding: 20px 0
+    border-bottom: 4px solid $c-gold
 
     &.sticky
-        // padding: 15px 0
+        a
+            padding: 15px 0
 
     &__logo
         img
@@ -15,8 +16,8 @@
     a
         font-size: 16px
         text-transform: uppercase
-        letter-spacing: -1px
-        font-family: $title-font,Helvetica,Arial,sans-serif
+        // letter-spacing: -1px
+        font-family: $title-font, Helvetica, Arial, sans-serif
 
         +xs
             font-size: 14px
@@ -42,23 +43,9 @@
             line-height: 1.2em
             font-weight: 300
 
-            &::after
-                content: ''
-                display: block
-                position: absolute
-                bottom: -2px
-                width: 100%
-                left: 0
-                max-width: 0
-                transition: max-width .2s
-                background-color: $c-light
-                height: 1px
-
             &:hover,
             &.current
                 background-color: $c-light2
-                &::after
-                    max-width: 100%
             
 
 

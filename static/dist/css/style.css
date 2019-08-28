@@ -529,13 +529,15 @@ button, input {
   font-weight: 700; }
 
 @font-face {
-  font-family: 'Title';
+  font-family: 'title';
   src: url("../fonts/fonttitle.eot");
+  src: url("../fonts/fonttitle.eot?#iefix") format("embedded-opentype"), url("../fonts/fonttitle.woff") format("woff"), url("../fonts/fonttitle.ttf") format("truetype"), url("../fonts/fonttitle.svg#fonttitle") format("svg");
   font-weight: 400; }
 
 @font-face {
-  font-family: 'Text';
+  font-family: 'text';
   src: url("../fonts/fonttext.eot");
+  src: url("../fonts/fonttext.eot?#iefix") format("embedded-opentype"), url("../fonts/fonttext.woff") format("woff"), url("../fonts/fonttext.ttf") format("truetype"), url("../fonts/fonttext.svg#fonttext") format("svg");
   font-weight: 400;
   font-style: normal; }
 
@@ -585,7 +587,10 @@ label {
   left: -webkit-sticky;
   position: sticky;
   top: 0;
-  box-shadow: 0 -4px 14px -8px #000; }
+  box-shadow: 0 -4px 14px -8px #000;
+  border-bottom: 4px solid #d2b88f; }
+  .header.sticky a {
+    padding: 15px 0; }
   .header__logo img {
     will-change: transform;
     -webkit-transform: translateZ(0);
@@ -593,8 +598,7 @@ label {
   .header a {
     font-size: 16px;
     text-transform: uppercase;
-    letter-spacing: -1px;
-    font-family: "Title", Helvetica, Arial, sans-serif; }
+    font-family: "title", Helvetica, Arial, sans-serif; }
   .header__nav {
     min-width: 320px;
     -webkit-box-flex: 0;
@@ -614,22 +618,8 @@ label {
       padding: 30px 0;
       line-height: 1.2em;
       font-weight: 300; }
-      .header__nav a::after {
-        content: '';
-        display: block;
-        position: absolute;
-        bottom: -2px;
-        width: 100%;
-        left: 0;
-        max-width: 0;
-        -webkit-transition: max-width .2s;
-        transition: max-width .2s;
-        background-color: #f7f9fa;
-        height: 1px; }
       .header__nav a:hover, .header__nav a.current {
         background-color: #eceff2; }
-        .header__nav a:hover::after, .header__nav a.current::after {
-          max-width: 100%; }
   .header__mobile, .header__burger {
     display: none; }
   .header__burger {
