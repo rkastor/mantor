@@ -121,12 +121,26 @@ img
         @extend .h4
         font-family: 'title', Helvetica,Arial, sans-serif
         text-align: center
+        width: max-content
+
+        &.white-title,
+        &.blue-title
+            text-align: left
+            border-top: 6px solid $c-gold
+            padding-left: 15px
+            padding-right: 60px
+            padding-top: 5px;
+            padding-bottom: 3px;
+            display: inline-block;
+            margin-top: 0;
+            margin-bottom: 10px;
 
         &.white-title
-            text-align: left
             background: $c-white
             color: $c-main
-            border-top: 6px solid $c-gold
+        &.blue-title 
+            background: $c-main
+            color: $c-white
 
         &.dots-title
             display: inline-block
@@ -205,16 +219,6 @@ img
         +mob-hor
             font-size: 12px
 
-.white
-    color: $c-white
-.gold
-    color: $c-gold
-.main-color
-    color: $c-main
-
-
-.block
-    display: block
 
 .blur
     filter: blur(50px)

@@ -1,0 +1,32 @@
+.concept
+
+    p
+        line-height: 40px
+        text-align: justify
+
+    &__img-block
+        user-select: none
+        pointer-events: none
+        margin-bottom: 60px
+
+        p
+            text-align: center
+
+
+        .text
+            position: absolute
+            bottom: 80px
+            left: 0
+            right: 0
+
+            p
+                line-height: 1.6em
+                font-weight: 100
+                font-size: 28px
+
+    .blue-title
+        @extend .h1
+        @extend .white
+
+        &:last-child
+            margin-bottom: 50px

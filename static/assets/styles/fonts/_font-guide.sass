@@ -3,13 +3,11 @@ h2, .h2,
 h3, .h3
     font-weight: 700
     line-height: 1.208em
-    color: inherit
+    // color: inherit
+    font-family: $title-font, Helvetica, Arial, sans-serif
 
 h1, .h1
-    font-size: 60px
-
-    +lg-range
-        font-size: 54px
+    font-size: 54px
     +sm
         font-size: 30px
     +mob-hor
@@ -50,10 +48,12 @@ p, a, span, input, button
     +xs
         font-size: 10px 
 
-b, strong, .bold
+b, strong
     font-weight: 700
     font-family: 'textbold'
     color: $c-gold
+    +selection
+        color: $c-main
 
 label
     font-size: inherit
@@ -73,3 +73,13 @@ label
 .title
     font-weight: 700
     margin-bottom: 10px
+
+.italic
+    font-family: $italic-font
+    font-style: italic;
+
+.uppercase
+    text-transform: uppercase
+
+.bold
+    font-weight: bold

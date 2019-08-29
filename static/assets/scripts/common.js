@@ -95,7 +95,7 @@ $(function(){
                     // transition: 'background-position 1s'
                 });
                 $('.section--banner .banner__img, .section--banner .section__title').css({ 
-                    top: -(scroll * .6),
+                    top: (scroll * .6),
                     opacity: 1 - scroll * .003
                 });
                 // console.log(scroll * .3);
@@ -126,6 +126,7 @@ $(function(){
         
             // scroll to block via hash in link
             var target = $(this).attr('href');
+            event.preventDefault();
             // console.log(target);
 
             if( target.length && target != "#") {
@@ -161,7 +162,15 @@ $(function(){
             sectionItems = $(document).find('.section');
 
             for (i=0; i < sectionItems.length; i++) {
-                sectionsNav.append('<a class="current-block__index" href="#'+ sectionItems.eq(i).attr('id') +'" data-id="section-'+ i +'"></a>');
+                
+                if (sectionItems.eq(i).attr('id')) {
+                    var sectionId = sectionItems.eq(i).attr('id');
+                    console.log(sectionId);
+                } else {
+                    sectionId = ''
+                }
+
+                sectionsNav.append('<a class="current-block__index" href="#'+ sectionId +'" data-id="section-'+ i +'"></a>');
             }
             
         if ($('.section--banner'.length != 0)) {
@@ -206,7 +215,7 @@ $(function(){
                     $('.header__nav a').removeClass('current');
                     
                     sectionsNav.find('.current-block__index').eq(index).addClass('current');
-                    $('.header__nav a[href="#' + ($this.attr('id')) ? $this.attr('id') : '' + '"]').addClass('current');
+                    $('.header__nav a[href="#' + $this.attr('id') + '"]').addClass('current'); 
                     // console.log(index);
 
                     // console.log($this.attr('data-color'));
