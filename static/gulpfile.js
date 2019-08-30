@@ -128,7 +128,7 @@ gulp.task('sass', function() {
         // .pipe(sourcemaps.write('./')) 
         .pipe(rename('style.css'))
         .pipe(gulp.dest(dirStyles_dist))
-        // .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({stream: true}));
 });
 
 /**************************Сжатие CSS*******************************************/
@@ -181,7 +181,26 @@ gulp.task('scripts_main', function() {
         .pipe(concat('main.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(dirScripts_dist))
-        // .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({stream: true}));
+});
+
+/**************************Browser Sync****************************************/
+gulp.task('browser-sync', function(){
+    browserSync({
+        server: {
+            baseDir: main_dist
+        },
+        notify:false
+    });
+
+    
+    
+  gulp.watch([dirStyles_src+'/**/*.{sass,scss}'], gulp.parallel('sass')).on("change", browserSync.reload);
+  gulp.watch([dirImg_src+"/**/*"], gulp.parallel('img')).on("change", browserSync.reload);
+  gulp.watch([dirScripts_src+'/**/*.js'], gulp.parallel('scripts_main')) .on("change", browserSync.reload);
+  gulp.watch([dirFonts_src], gulp.parallel("fonts")).on("change", browserSync.reload);
+  gulp.watch([dirSvg_src + '/**/*.svg'], gulp.parallel('svgo')).on("change", browserSync.reload);
+  gulp.watch([dirHtml_src+ "/**/*.html"], gulp.parallel('nunjucks-render')).on("change", browserSync.reload);
 });
 
 
@@ -290,30 +309,16 @@ function log(error) {
     this.end();
 }
 
-/**************************Browser Sync****************************************/
-gulp.task('browser-sync', function(){
-    browserSync({
-        server: {
-            baseDir: main_dist
-        },
-        notify:false
-    });
-});
+
+
+
 
 
 
 /*************************************WATCH************************************/
-gulp.task('watch', gulp.parallel('browser-sync', 'nunjucks-render', 'sass', 'img', 'css-libs', 'scripts_main', 'scripts_libs', 'fonts', 'svgo', 'css-main'), function(){
-    
-  gulp.watch([dirStyles_dist+'/*'], gulp.parallel('sass')).on("change", browserSync.reload);
-  gulp.watch([dirScripts_dist+"/*"], gulp.parallel('img')).on("change", browserSync.reload);
-  gulp.watch([dirImg_dist+'/**/*'], gulp.parallel('scripts_main')) .on("change", browserSync.reload);
-  gulp.watch([dirFonts_src], gulp.parallel("fonts")).on("change", browserSync.reload);
-  gulp.watch([dirSvg_src + '/**/*.svg'], gulp.parallel('svgo')).on("change", browserSync.reload);
-  gulp.watch([dirHtml_src+ "/**/*.html"], gulp.parallel('nunjucks-render')).on("change", browserSync.reload);
-});
+gulp.task('watch', gulp.parallel('browser-sync', 'nunjucks-render', 'sass', 'img', 'css-libs', 'scripts_main', 'scripts_libs', 'fonts', 'svgo', 'css-main'));
 
-gulp.task('default', ['watch']);
+gulp.task('default', gulp.parallel('watch'));
 
 /*************************************СБОРКА***********************************/
 gulp.task('build', gulp.series('clean', 'img', 'scripts_main', 'scripts_libs', 'nunjucks-render', 'css-libs', 'css-main', 'fonts', 'svgo'));

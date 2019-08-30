@@ -704,8 +704,7 @@ label {
   -webkit-transition: all .4s;
   transition: all .4s; }
   .header.sticky {
-    position: fixed;
-    background-color: #000; }
+    position: fixed; }
     .header.sticky + * {
       margin-top: 80px; }
   .header.sticky:not(:hover) {
