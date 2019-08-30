@@ -9,7 +9,11 @@
     background-color: $c-white
     transition: all .4s
 
-    &.sticky:not(:hover)
+    &.sticky
+        position: fixed
+        + * 
+            margin-top: 80px 
+    &.sticky:not(:hover) 
         opacity: .7
         .header__nav
             a

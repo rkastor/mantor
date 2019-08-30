@@ -66,8 +66,11 @@ $(function(){
 
 
         // sticky header after scroll
-        if ($(window).scrollTop() >= $('.header').next().outerHeight() + 20) {
-            $('.header').addClass('sticky');
+        if ($(window).scrollTop() >= $('.header').next('.banner').outerHeight() + 20) {
+            $('.header').addClass('sticky')
+            .next().css("margin-top", $('.header').outerHeight());
+        } else {
+            $('.header').next().css("margin-top", 0);
         }
 
 
@@ -99,21 +102,36 @@ $(function(){
                     opacity: 1 - scroll * .003
                 });
                 // console.log(scroll * .3);
-            }
 
-            if(scroll < $('.section--banner').outerHeight()) {
                 $('.current-block').fadeOut(100);
             }
             
 
-            if (scroll >= $('.section--banner').outerHeight() + 40) {
-                $('.header').addClass('sticky');
+            if (scroll >= $('.section--banner').outerHeight() + 40 && scroll > position) {
+                $('.header').addClass('sticky').next().css("margin-top", $('.header').outerHeight());
                 $('.current-block').fadeIn(400);
                 // return;
+                console.log('scroll >= $(.section--banner)')
+            }
+            
+
+            if (scroll >= 40 && $('.section--banner').length == 0) {
+                $('.header').addClass('sticky').next().css("margin-top", $('.header').outerHeight());
+                console.log('scroll >= 40')
+                // return;
+            }
+            else if (scroll < 40) {
+                $('.header').next().css("margin-top", 0);
+                console.log('scroll < 40');
+            }
+            else if (scroll < $('.section--banner').outerHeight() + 40) {
+                $('.header').next().css("margin-top", 0);
+                console.log('scroll < 40 2');
             }
 
             else if (scroll < position) {
                 $('.header').removeClass('sticky');
+                console.log('scroll < position');
             }
             position = scroll;
         })
@@ -165,7 +183,7 @@ $(function(){
                 
                 if (sectionItems.eq(i).attr('id')) {
                     var sectionId = sectionItems.eq(i).attr('id');
-                    console.log(sectionId);
+                    // console.log(sectionId);
                 } else {
                     sectionId = ''
                 }

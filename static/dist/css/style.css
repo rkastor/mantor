@@ -703,6 +703,11 @@ label {
   background-color: #fff;
   -webkit-transition: all .4s;
   transition: all .4s; }
+  .header.sticky {
+    position: fixed;
+    background-color: #000; }
+    .header.sticky + * {
+      margin-top: 80px; }
   .header.sticky:not(:hover) {
     opacity: .7; }
     .header.sticky:not(:hover) .header__nav a {

@@ -128,7 +128,7 @@ gulp.task('sass', function() {
         // .pipe(sourcemaps.write('./')) 
         .pipe(rename('style.css'))
         .pipe(gulp.dest(dirStyles_dist))
-        .pipe(browserSync.reload({stream: true}));
+        // .pipe(browserSync.reload({stream: true}));
 });
 
 /**************************Сжатие CSS*******************************************/
@@ -181,24 +181,7 @@ gulp.task('scripts_main', function() {
         .pipe(concat('main.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(dirScripts_dist))
-        .pipe(browserSync.reload({stream: true}));
-});
-
-/**************************Browser Sync****************************************/
-gulp.task('browser-sync', function(){
-    browserSync({
-        server: {
-            baseDir: main_dist
-        },
-        notify:false
-    });
-
-  gulp.watch([dirStyles_src+'/**/*.{sass,scss}'], gulp.parallel('sass')).on("change", browserSync.reload);
-  gulp.watch([dirImg_src+"/**/*"], gulp.parallel('img')).on("change", browserSync.reload);
-  gulp.watch([dirScripts_src+'/**/*.js'], gulp.parallel('scripts_main')) .on("change", browserSync.reload);
-  gulp.watch([dirFonts_src], gulp.parallel("fonts")).on("change", browserSync.reload);
-  gulp.watch([dirSvg_src + '/**/*.svg'], gulp.parallel('svgo')).on("change", browserSync.reload);
-  gulp.watch([dirHtml_src+ "/**/*.html"], gulp.parallel('nunjucks-render')).on("change", browserSync.reload);
+        // .pipe(browserSync.reload({stream: true}));
 });
 
 
@@ -277,80 +260,6 @@ gulp.task('svgo', function() {
     
 // });
 
-gulp.task('sprite:svg', function () {
-    return gulp
-        .src(dirSvg_src + '/*.svg')
-        .pipe(cheerio(function ($, file) {
-            if (!$('svg').attr('viewBox')) {
-                var w = $('svg').attr('width').replace(/\D/g, '');
-                var h = $('svg').attr('height').replace(/\D/g, '');
-                $('svg').attr('viewBox', '0 0 ' + w + ' ' + h);
-            }
-        }))
-        .pipe(plumber())
-        .pipe(svgmin({
-            js2svg: {
-                pretty: true
-            },
-            plugins: [{
-                removeDesc: true
-            }, {
-                cleanupIDs: true
-            }, {
-                mergePaths: false
-            }]
-        }))
-        .pipe(rename({
-            prefix: 'icon-'
-        }))
-        .pipe(svgStore({
-            inlineSvg: false
-        }))
-        .pipe(through2.obj(function (file, encoding, cb) {
-            // const $ = file.cheerio;
-            const $ = cheerio.load(file);
-            var data = $('svg > symbol').map(function () {
-                var $this = $(this);
-                var size = $this.attr('viewBox').split(' ').splice(2);
-                var name = $this.attr('id');
-                var ratio = size[0] / size[1]; // symbol width / symbol height
-                var fill = $this.find('[fill]:not([fill="currentColor"])').attr('fill');
-                var stroke = $this.find('[stroke]').attr('stroke');
-                return {
-                    name: name,
-                    ratio: +ratio.toFixed(2),
-                    fill: fill || 'initial',
-                    stroke: stroke || 'initial'
-                };
-            }).get();
-            this.push(file);
-            gulp.src(__dirname + dirStyles_src + '/_sprite-svg.scss')
-                .pipe(consolidate('lodash', {
-                    symbols: data
-                }))
-                .pipe(gulp.dest(sassGen));
-            gulp.src(__dirname + sassGen + '/sprite.html')
-                .pipe(consolidate('lodash', {
-                    symbols: data
-                }))
-                .pipe(gulp.dest(sassGen));
-            cb();
-        }))
-        .pipe(cheerio({
-            run: function ($, file) {
-                $('[fill]:not([fill="currentColor"])').removeAttr('fill');
-                $('[stroke]').removeAttr('stroke');
-            },
-            parserOptions: {
-                xmlMode: true
-            }
-        }))
-        .pipe(rename({
-            basename: 'sprite'
-        }))
-        .pipe(gulp.dest(dirSvg_dist))
-});
-
 /**************************************Сжатие html******************************/
 gulp.task('minify_html', function() {
     return gulp.src(dirHtml_src+'/*.html')
@@ -381,14 +290,30 @@ function log(error) {
     this.end();
 }
 
-
-
-
+/**************************Browser Sync****************************************/
+gulp.task('browser-sync', function(){
+    browserSync({
+        server: {
+            baseDir: main_dist
+        },
+        notify:false
+    });
+});
 
 
 
 /*************************************WATCH************************************/
-gulp.task('watch', gulp.parallel('browser-sync', 'nunjucks-render', 'sass', 'img', 'css-libs', 'scripts_main', 'scripts_libs', 'fonts', 'svgo', 'css-main'));
+gulp.task('watch', gulp.parallel('browser-sync', 'nunjucks-render', 'sass', 'img', 'css-libs', 'scripts_main', 'scripts_libs', 'fonts', 'svgo', 'css-main'), function(){
+    
+  gulp.watch([dirStyles_dist+'/*'], gulp.parallel('sass')).on("change", browserSync.reload);
+  gulp.watch([dirScripts_dist+"/*"], gulp.parallel('img')).on("change", browserSync.reload);
+  gulp.watch([dirImg_dist+'/**/*'], gulp.parallel('scripts_main')) .on("change", browserSync.reload);
+  gulp.watch([dirFonts_src], gulp.parallel("fonts")).on("change", browserSync.reload);
+  gulp.watch([dirSvg_src + '/**/*.svg'], gulp.parallel('svgo')).on("change", browserSync.reload);
+  gulp.watch([dirHtml_src+ "/**/*.html"], gulp.parallel('nunjucks-render')).on("change", browserSync.reload);
+});
+
+gulp.task('default', ['watch']);
 
 /*************************************СБОРКА***********************************/
 gulp.task('build', gulp.series('clean', 'img', 'scripts_main', 'scripts_libs', 'nunjucks-render', 'css-libs', 'css-main', 'fonts', 'svgo'));
